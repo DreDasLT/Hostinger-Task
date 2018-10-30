@@ -8,7 +8,7 @@
 
 class Category
 {
-    const DEFAULT_PARENT_ID = 1;
+    const DEFAULT_PARENT_ID = 0;
 
     private $id;
 
@@ -35,7 +35,7 @@ class Category
      */
     public function getName()
     {
-        return $this->name;
+        return  '-' . $this->name;
     }
 
     /**
@@ -66,7 +66,13 @@ class Category
         $this->parent_category_id = $parent_category_id;
     }
 
-    public function __construct($id, $name, $parent_category_id = self::DEFAULT_PARENT_ID)
+    /**
+     * Category constructor.
+     * @param int $id
+     * @param string $name
+     * @param int $parent_category_id
+     */
+    public function __construct(int $id, string $name, int $parent_category_id = self::DEFAULT_PARENT_ID)
     {
         $this->id = $id;
         $this->name = $name;
