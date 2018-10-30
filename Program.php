@@ -7,6 +7,7 @@
  */
 
 require_once('Category.php');
+require_once('functions.php');
 
 $categories = array(
     new Category(1, 'cat'),
@@ -22,21 +23,7 @@ $categories = array(
     new Category(8, 'cat')
 );
 
+$tree = printTree($categories);
 
-function buildTree(array $categories, $parent = 0) {
-    foreach ($categories as $category) {
-        if ($category->getParentCategoryId() == $parent) {
-            printBranch($category);
-            buildTree($categories, $category->getId());
-        }
-    }
-    return true;
-}
 
-function printBranch(Category $category) {
-    $parent = $category->getParentCategoryId();
-    $tabNumber = $parent != 0 ? $parent + 1 : 0;
-    echo str_repeat('&nbsp', $tabNumber) . $category->getName() . "<br>";
-}
 
-$tree = buildTree($categories);
